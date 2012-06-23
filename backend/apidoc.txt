@@ -1,0 +1,7 @@
+API DOCUMENTATION WGSHOPPINGLIST
+
+# restricted apis
+# these api calls are only available if the user was authenticated via /login
+
+/api/getshoppinglists
+  - returns an array represented in a JSON string that contains all available shopping lists
