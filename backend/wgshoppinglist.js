@@ -35,7 +35,7 @@ app.configure(function() {
   app.use(app.router);
 });
 
-api.initAPI(app);
+api.initAPI(app,connection);
 application.initApplication(app,passport,connection);
 app.listen(8080);
 
