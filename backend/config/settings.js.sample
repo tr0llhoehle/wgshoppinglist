@@ -1,0 +1,6 @@
+settings = {
+	dbhost		: 'localhost',
+  	dbuser		: 'user',
+  	dbpassword 	: 'password',
+  	database 	: 'database',
+}
