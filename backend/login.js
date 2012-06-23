@@ -6,8 +6,8 @@ exports.initLogin = function(connection,passport) {
 function findById(id, fn) {
   var idx = id - 1;
   connection.query('SELECT * FROM users WHERE user_id = '+connection.escape(id), function(err, rows, fields) {
-  	var user = { id: rows[0].user_id, username: rows[0].username, password: 'n/a', email: rows[0].email };
   if (rows[0] != null) {
+  	var user = { id: rows[0].user_id, username: rows[0].username, password: 'n/a', email: rows[0].email, wg: rows[0].wg_id };
     fn(null, user);
   } else {
     fn(new Error('User ' + id + ' does not exist'));
@@ -60,20 +60,25 @@ passport.use(new LocalStrategy(
 
 	connection.query('SELECT * FROM users WHERE username = '+connection.escape(username), function(err, rows, fields) {
   		if (err) throw err;
-	
-  		console.log('Query result: ', rows);
-  		givenSalt = rows[0].salt;
-  		givenKey = rows[0].password;
-  		checkPassword(username,password,givenSalt,givenKey,function(success){
-  			if(success) {
-      			console.log("login successful");
-      			var user = { id: rows[0].user_id, username: username, password: 'n/a', email: rows[0].email };
-      			return done(null, user);
-    		} else {
-    			console.log("login failed");
-    			return done(null, false, { message: 'Unkown user ' + username });
-    		}
-  		});     
+  		if (rows[0] != null) {
+  			console.log('Query result: ', rows);
+  			givenSalt = rows[0].salt;
+  			givenKey = rows[0].password;
+  			checkPassword(username,password,givenSalt,givenKey,function(success){
+  				if(success) {
+      				console.log("login successful");
+      				var user = { id: rows[0].user_id, username: username, password: 'n/a', email: rows[0].email, wg: rows[0].wg_id };
+      				console.log("userwg: " + user.wg);
+      				return done(null, user);
+    			} else {
+    				console.log("login failed");
+    				return done(null, false, { message: 'Unkown user ' + username });
+    			}
+  			});
+  		} else {
+  			console.log("login failed");
+    		return done(null, false, { message: 'Unkown user ' + username });
+  		}    
 	});
     });
   }
