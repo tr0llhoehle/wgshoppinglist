@@ -1,6 +1,7 @@
 var crypto = require('crypto');
+var LocalStrategy = require('passport-local').Strategy;
 
-exports.initLogin = function(connection,passport,LocalStrategy) {
+exports.initLogin = function(connection,passport) {
 
 function findById(id, fn) {
   var idx = id - 1;
