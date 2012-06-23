@@ -68,7 +68,6 @@ passport.use(new LocalStrategy(
   				if(success) {
       				console.log("login successful");
       				var user = { id: rows[0].user_id, username: username, password: 'n/a', email: rows[0].email, wg: rows[0].wg_id };
-      				console.log("userwg: " + user.wg);
       				return done(null, user);
     			} else {
     				console.log("login failed");

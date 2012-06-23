@@ -32,7 +32,6 @@ exports.initApplication = function(app,passport,connection) {
 	  });
 	app.post('/register', 
 	  function(req, res) {
-	  	console.log('pw:'+req.body.password);
 	  	register.registerUser(req.body.username,req.body.password,connection);
 	    res.redirect('/');
 	  });
