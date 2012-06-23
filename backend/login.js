@@ -34,40 +34,21 @@ function hashPassword(username,password) {
 	var keylen = 256;
 	var salt = new Buffer(crypto.randomBytes(256)).toString('hex');
 	
-	//console.log('hashPassword:');
-	//console.log('password: '+password);
-	//console.log('salt: '+salt);
-	//console.log('iterations: '+iterations);
-	//console.log('keylen: '+keylen);
 	crypto.pbkdf2(password, salt, iterations, keylen, function(err,derivedKey){
-		//console.log('salt: '+salt);
 		derivedKey = new Buffer(derivedKey).toString('base64');
-		//mysql insert
-		//checkPassword(password,salt,derivedKey);
 		
 		connection.query('INSERT INTO users SET username = '+connection.escape(username)+',password='+connection.escape(derivedKey)+',salt='+connection.escape(salt)+';', function(err, rows, fields) {
   			if (err) throw err;
 		});
 
-	//connection.end();
 	});	
 }
 
 function checkPassword(username, password, givenSalt, givenKey, callback) {
 	var iterations = 4096;
 	var keylen = 256;
-	//console.log('checkPassword:');
-	//console.log('password: '+password);
-	//console.log('salt: '+givenSalt);
-	//console.log('iterations: '+iterations);
-	//console.log('keylen: '+keylen);
 	crypto.pbkdf2(password, givenSalt, iterations, keylen, function(err,derivedKey){
 		var derivedKeyBase64 = new Buffer(derivedKey).toString('base64');
-		//console.log('salt: '+givenSalt);
-		//console.log('givenkey: '+givenKey);
-		//console.log('key: '+derivedKeyBase64);
-		//console.log('hex: '+new Buffer(derivedKey).toString('hex'));
-		//console.log('base64'+new Buffer(derivedKey).toString('base64'));
 		if(givenKey == derivedKeyBase64) {
 			console.log('password match');
 			callback(true);
@@ -86,11 +67,7 @@ function checkPassword(username, password, givenSalt, givenKey, callback) {
 //   however, in this example we are using a baked-in set of users.
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    // asynchronous verification
     process.nextTick(function () {
-
-
-	//connection.connect();
 	
 	var givenSalt;
     var givenKey;

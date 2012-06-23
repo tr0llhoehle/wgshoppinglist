@@ -37,7 +37,6 @@ var app = express.createServer();
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(app.router);
-  //app.use(express.static(__dirname + '/../../public'));
 });
 
 api.initAPI(app);
