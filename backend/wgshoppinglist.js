@@ -15,7 +15,7 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-login.initLogin(connection,passport,LocalStrategy);
+login.initLogin(connection,passport);
 
 var app = express.createServer();
 
