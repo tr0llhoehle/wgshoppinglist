@@ -21,5 +21,32 @@ exports.initAPI = function(app,connection) {
 			res.send(JSON.stringify(shoppinglists));
 		});
 	});
+	
+	app.get('/api/getshoppinglist/:id', common.ensureAuthenticatedAPI, function(req, res){
+		connection.query('SELECT * FROM shopping_lists WHERE shopping_list_id = '+connection.escape(req.params.id)+' LIMIT 1', function(err, rows, fields) {
+			if(rows[0] != null) {
+				if(rows[0].wg_id == req.user.wg) {
+					connection.query('SELECT * FROM items WHERE shopping_list_id = '+connection.escape(req.params.id), function(err, itemrows, fields) {
+						function shoppinglistitem(description,insert_date,checked,user_id,purchase_id)
+						{
+							this.description=description;
+							this.insert_date=insert_date;
+							this.checked=checked;
+							this.user_id=user_id;
+							this.purchase_id=purchase_id;
+						}
+						var items = [];
+						for(var item in itemrows) {
+							items[item] = new shoppinglistitem(itemrows[item].description,itemrows[item].insert_date,itemrows[item].checked,itemrows[item].user_id,itemrows[item].purchase_id);
+						}
+						//return all shoppinglist items in json
+						res.send(JSON.stringify(items));
+					});
+				}
+			} else {
+				res.send('[]')
+			}
+		});
+	});
 }
 
