@@ -1,6 +1,7 @@
 var common = require('./functions');
+var register = require('./register');
 
-exports.initApplication = function(app,passport) {
+exports.initApplication = function(app,passport,connection) {
 	app.get('/', function(req, res){
 	  res.render('index', { user: req.user });
 	});
@@ -32,7 +33,7 @@ exports.initApplication = function(app,passport) {
 	app.post('/register', 
 	  function(req, res) {
 	  	console.log('pw:'+req.body.password);
-	  	hashPassword(req.body.username,req.body.password);
+	  	register.registerUser(req.body.username,req.body.password,connection);
 	    res.redirect('/');
 	  });
 	

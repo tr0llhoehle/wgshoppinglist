@@ -36,6 +36,6 @@ app.configure(function() {
 });
 
 api.initAPI(app);
-application.initApplication(app,passport);
+application.initApplication(app,passport,connection);
 app.listen(8080);
 
