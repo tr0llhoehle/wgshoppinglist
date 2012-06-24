@@ -127,6 +127,22 @@ exports.initAPI = function(app,connection) {
 		});
 		res.send('done');
 	});	
+	
+	app.post('/api/deleteentries', common.ensureAuthenticatedAPI, function(req, res) {
+		// parsed now containes all entries that should be removed
+		var parsed = JSON.parse(req.body.entries);
+		connection.query('SELECT * FROM shopping_lists WHERE shopping_list_id = '+connection.escape(parsed.shoppinglist)+' LIMIT 1', function(err, rows, fields) {
+			if(rows[0] != null) {
+				if(rows[0].wg_id == req.user.wg) {
+					for(var i in parsed.entries) {
+						connection.query('UPDATE items SET deleted = 1,update_date=NOW() WHERE item_id ='+connection.escape(parsed.entries[i]), function(err, itemrows, fields) {
+						});
+					}
+				}
+			}
+		});
+		res.send('done');
+	});
 
 }
 
