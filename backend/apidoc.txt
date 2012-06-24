@@ -11,6 +11,7 @@ API DOCUMENTATION WGSHOPPINGLIST
     - description : the product description,
     - insert_date : when the product was added to the database,
     - checked : if the product has alreay been checked off the list or not,
+    - removed : if the product has been removed from the list or not,
     - user_id : the id of the user that added this product,
     - purchase_id : the id of the purchase
 
@@ -19,6 +20,7 @@ API DOCUMENTATION WGSHOPPINGLIST
     - description : the product description,
     - insert_date : when the product was added to the database,
     - checked : if the product has alreay been checked off the list or not,
+    - removed : if the product has been removed from the list or not,
     - user_id : the id of the user that added this product,
     - purchase_id : the id of the purchase
 
