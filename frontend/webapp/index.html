@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/jquery.mobile-1.1.0.min.css" />
+		<script src="js/jquery-1.7.2.min.js"></script>
+		<script src="js/jquery.mobile-1.1.0.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/shoppingList.js"></script>
+		<script src="js/network.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>WGMS shopping list</title>
+	</head>
+	<body>
+		<div id="edit" data-role="page">
+			<div data-role="header">
+				<h1>Edit shopping list</h1>
+			</div>
+			<div data-role="content">
+			</div>
+			<div data-role="footer">
+				<p><a href="#add" data-role="button" data-rel="dialog" data-transition="pop">Add new item</a></p>
+				<p><a href="#shopping" data-role="button">Start shopping</a></p>
+			</div>
+		</div>
+		<div id="auth" data-role="page">
+			<div data-role="header">
+				<h1>Authentification required</h1>
+			</div>
+			<div data-role="content" id="logincontent">
+				<form method="post" action="../Login">
+					Username: <input id="name" name="name" type="text"><br> 
+					Password: <input id="password" name="password" type="password"><br> 
+					<input class="button" type="button" value="Login">
+				</form> 
+			<div data-role="footer">
+			</div>
+			</div>  
+		</div>
+		<div id="add" data-role="page">
+			<div data-role="header">
+				<h1>Add new item</h1>
+			</div>
+			<div data-role="content">
+				<p>foo</p>
+			</div>
+			<div data-role="footer">
+				<p>bar</p>
+			</div>
+		</div>
+		<div id="shopping" data-role="page">
+			<div data-role="header">
+				<h1>Shopping</h1>
+			</div>
+			<div data-role="content">
+			</div>
+			<div data-role="footer">
+			</div>
+		</div>
+	</body>
+</html>
