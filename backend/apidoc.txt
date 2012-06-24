@@ -18,3 +18,8 @@ API DOCUMENTATION WGSHOPPINGLIST
   - checks the given entries off the shopping list. the data is expected to be delivered via POST in the following format:
     - entries={"shoppinglist":shoppinglistnumber,"entries":[entrynumbers]}'
     - example: entries={"shoppinglist":42,"entries":[13,37]}'
+
+/api/uncheckentries (POST)
+  - unchecks the given entries off the shopping list. the data is expected to be delivered via POST in the following format:
+    - entries={"shoppinglist":shoppinglistnumber,"entries":[entrynumbers]}'
+    - example: entries={"shoppinglist":42,"entries":[13,37]}'
