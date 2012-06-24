@@ -5,7 +5,9 @@ API DOCUMENTATION WGSHOPPINGLIST
 # if you try these without being authenticated all you get is the string: plxauthenticatekthxbai
 
 /api/getshoppinglists (GET)
-  - returns an array represented in a JSON string that contains all available shopping lists
+  - returns an array of shoppinglist objects represented in a JSON string that contains all available shopping lists:
+    - id: the id of the shopping list
+    - description: the name of the shopping list
 
 /api/getshoppinglist/:id (GET)
   - returns an array of shoppinglistitem objects represented in a JSON string containing the following entries:

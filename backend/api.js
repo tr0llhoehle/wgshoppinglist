@@ -13,9 +13,15 @@ exports.initAPI = function(app,connection) {
 
 	app.get('/api/getshoppinglists', common.ensureAuthenticatedAPI, function(req, res){
 		connection.query('SELECT * FROM shopping_lists WHERE wg_id = '+connection.escape(req.user.wg), function(err, rows, fields) {
+			function shoppinglist(id,description)
+						{
+							this.description=description;
+							this.id=id;
+						}
 			var shoppinglists = [];
 			for(var row in rows) {
-				shoppinglists[row] = rows[row].shopping_list_id;
+				
+				shoppinglists[row] = new shoppinglist(rows[row].shopping_list_id, rows[row].title);
 			}
 			//return all shoppinglist ids in json
 			res.send(JSON.stringify(shoppinglists));
