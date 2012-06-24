@@ -39,6 +39,8 @@ exports.initAPI = function(app,connection) {
 						for(var item in itemrows) {
 							items[item] = new shoppinglistitem(itemrows[item].description,itemrows[item].insert_date,itemrows[item].checked,itemrows[item].user_id,itemrows[item].purchase_id);
 						}
+						//update user update time
+						req.user.date = new Date();
 						//return all shoppinglist items in json
 						res.send(JSON.stringify(items));
 					});
