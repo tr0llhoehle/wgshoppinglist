@@ -59,7 +59,6 @@ passport.use(new LocalStrategy(
 	connection.query('SELECT * FROM users WHERE username = '+connection.escape(username), function(err, rows, fields) {
   		if (err) throw err;
   		if (rows[0] != null) {
-  			console.log('Query result: ', rows);
   			givenSalt = rows[0].salt;
   			givenKey = rows[0].password;
   			checkPassword(username,password,givenSalt,givenKey,function(success){
