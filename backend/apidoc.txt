@@ -43,3 +43,8 @@ API DOCUMENTATION WGSHOPPINGLIST
   - removes the given entries from the shopping list. the data is expected to be delivered via POST in the following format:
     - entries={"shoppinglist":shoppinglistnumber,"entries":[entrynumbers]}
     - example: entries={"shoppinglist":42,"entries":[13,37]}
+
+/api/doneshopping (POST)
+  - adds a new purchase to the database and connects it to the given entries. the data is expected to be delivered via POST in the following format:
+    - entries={"shoppinglist":shoppinglistnumber,"sum":sum,"entries":[entrynumbers]}
+    - example: entries={"shoppinglist":42,"sum":13.37,"entries":[13,37]}
