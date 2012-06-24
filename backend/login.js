@@ -2,17 +2,15 @@ var crypto = require('crypto');
 var LocalStrategy = require('passport-local').Strategy;
 
 exports.initLogin = function(connection,passport) {
+	
+var users = new Array();
 
 function findById(id, fn) {
-  var idx = id - 1;
-  connection.query('SELECT * FROM users WHERE user_id = '+connection.escape(id), function(err, rows, fields) {
-  if (rows[0] != null) {
-  	var user = { id: rows[0].user_id, username: rows[0].username, password: 'n/a', email: rows[0].email, wg: rows[0].wg_id };
-    fn(null, user);
+  if (users[id] != null) {
+    fn(null, users[id]);
   } else {
     fn(new Error('User ' + id + ' does not exist'));
   }
-  });
 }
 
 // Passport session setup.
@@ -67,7 +65,8 @@ passport.use(new LocalStrategy(
   			checkPassword(username,password,givenSalt,givenKey,function(success){
   				if(success) {
       				console.log("login successful");
-      				var user = { id: rows[0].user_id, username: username, password: 'n/a', email: rows[0].email, wg: rows[0].wg_id };
+      				var user = { id: rows[0].user_id, username: username, password: 'n/a', email: rows[0].email, wg: rows[0].wg_id, date: new Date() };
+      				users[rows[0].user_id] = user;
       				return done(null, user);
     			} else {
     				console.log("login failed");
