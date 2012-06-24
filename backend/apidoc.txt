@@ -13,3 +13,8 @@ API DOCUMENTATION WGSHOPPINGLIST
     - checked : if the product has alreay been checked off the list or not,
     - user_id : the id of the user that added this product,
     - purchase_id : the id of the purchase
+
+/api/checkentries
+  - checks the given entries off the shopping list. the data is expected to be delivered via POST in the following format:
+    - entries={"shoppinglist":shoppinglistnumber,"entries":[entrynumbers]}'
+    - example: entries={"shoppinglist":42,"entries":[13,37]}'
