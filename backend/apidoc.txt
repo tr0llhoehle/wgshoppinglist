@@ -2,6 +2,7 @@ API DOCUMENTATION WGSHOPPINGLIST
 
 # restricted apis
 # these api calls are only available if the user was authenticated via /login
+# if you try these without being authenticated all you get is the string: plxauthenticatekthxbai
 
 /api/getshoppinglists (GET)
   - returns an array represented in a JSON string that contains all available shopping lists
