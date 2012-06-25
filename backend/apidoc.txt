@@ -11,7 +11,7 @@ API DOCUMENTATION WGSHOPPINGLIST
 
 /api/getshoppinglist/:id (GET)
   - returns an array of shoppinglistitem objects represented in a JSON string containing the following entries:
-    - id: the id of the shoping list item
+    - id: the id of the shopping list item
     - description : the product description,
     - insert_date : when the product was added to the database,
     - checked : if the product has alreay been checked off the list or not,
@@ -19,6 +19,7 @@ API DOCUMENTATION WGSHOPPINGLIST
 
 /api/getshoppinglistupdates/:id (GET)
   - returns an array of shoppinglistitem objects that were updated since the last request represented in a JSON string containing the following entries:
+    - id: the id of the shopping list item
     - description : the product description,
     - insert_date : when the product was added to the database,
     - checked : if the product has alreay been checked off the list or not,
