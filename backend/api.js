@@ -33,8 +33,9 @@ exports.initAPI = function(app,connection) {
 			if(rows[0] != null) {
 				if(rows[0].wg_id == req.user.wg) {
 					connection.query('SELECT description, insert_date, checked, user_id FROM items WHERE shopping_list_id = '+connection.escape(req.params.id)+' AND removed = 0 AND purchase_id IS NULL', function(err, itemrows, fields) {
-						function shoppinglistitem(description,insert_date,checked,removed,user_id,purchase_id)
+						function shoppinglistitem(id,description,insert_date,checked,removed,user_id,purchase_id)
 						{
+							this.id=id;
 							this.description=description;
 							this.insert_date=insert_date;
 							this.checked=checked;
@@ -44,7 +45,7 @@ exports.initAPI = function(app,connection) {
 						}
 						var items = [];
 						for(var item in itemrows) {
-							items[item] = new shoppinglistitem(itemrows[item].description,itemrows[item].insert_date,itemrows[item].checked,itemrows[item].removed,itemrows[item].user_id,itemrows[item].purchase_id);
+							items[item] = new shoppinglistitem(itemrows[item].item_id,itemrows[item].description,itemrows[item].insert_date,itemrows[item].checked,itemrows[item].removed,itemrows[item].user_id,itemrows[item].purchase_id);
 						}
 						//update user update time
 						req.user.date = new Date();
