@@ -32,7 +32,7 @@ exports.initAPI = function(app,connection) {
 		connection.query('SELECT * FROM shopping_lists WHERE shopping_list_id = '+connection.escape(req.params.id)+' LIMIT 1', function(err, rows, fields) {
 			if(rows[0] != null) {
 				if(rows[0].wg_id == req.user.wg) {
-					connection.query('SELECT description, insert_date, checked, user_id FROM items WHERE shopping_list_id = '+connection.escape(req.params.id)+' AND removed = 0 AND purchase_id IS NULL', function(err, itemrows, fields) {
+					connection.query('SELECT item_id, description, insert_date, checked, user_id FROM items WHERE shopping_list_id = '+connection.escape(req.params.id)+' AND removed = 0 AND purchase_id IS NULL', function(err, itemrows, fields) {
 						function shoppinglistitem(id,description,insert_date,checked,removed,user_id,purchase_id)
 						{
 							this.id=id;
