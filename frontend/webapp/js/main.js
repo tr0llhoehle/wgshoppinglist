@@ -10,8 +10,10 @@
  */
 
 var network; 
+var shoppingList;
 
 $(window).load(function() {
 	console.log("finished loading.");
-	network = new Network("tr0llhoehle.de:8080");
+	shoppingList = new ShoppingList();
+	ko.applyBindings(shoppingList);
 });

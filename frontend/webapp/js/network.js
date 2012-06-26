@@ -6,10 +6,10 @@
  * See /backend/api/apidoc.txt for further details.
  */
 function Network(uri) {
-	this.getShoppingLists = function() {
+	this.getShoppingLists = function(callback) {
 		$.getJSON(uri + "/api/getshoppinglists", function(data) {
-			return $.parseJSON(data);
+			var foo = $.parseJSON(data);
+			callback(foo);
 		});
-		return [0,1];
 	}
 }
