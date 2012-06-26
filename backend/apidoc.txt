@@ -10,7 +10,7 @@ API DOCUMENTATION WGSHOPPINGLIST
     - description: the name of the shopping list
 
 /api/getshoppinglist/:id (GET)
-  - returns an array of shoppinglistitem objects represented in a JSON string containing the following entries:
+  - returns an array of shoppinglistitem objects represented in a JSON string ordered by checked and the alphabetically containing the following entries:
     - id: the id of the shopping list item
     - description : the product description,
     - insert_date : when the product was added to the database,
