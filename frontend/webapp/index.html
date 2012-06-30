@@ -22,10 +22,11 @@
 			<div data-role="content">
 				<ul data-role="listview" data-bind="foreach: items"> 
 					<li>
-						<input id="foo" type="checkbox"/>
-						<label for="foo" checked="checked">
-							<button data-inline="true" data-icon="delete" data-mini="true">Remove</button><span style="padding: 20px" data-bind="text: name"/>
-						</label>
+					<div>
+						<button data-inline="true" data-icon="delete" data-mini="true">Remove</button>
+						<span style="padding: 20px" data-bind="text: name"/>
+					</div>
+						<button data-inline="true" data-iconpos="right" data-mini="true" data-bind="data-icon: dataIconName">Check</button>
 					</li>
 				</ul>
 			</div>

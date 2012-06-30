@@ -23,6 +23,16 @@ function Item(name, id, checked, date) {
 	self.checked = (checked != undefined) ? ko.observable(checked) : ko.observable(false);
 	self.date = (date != undefined) ? date : new Date();
 	self.transferring = ko.observable(false);
+	self.dataIconName = ko.computed(function() {
+		return self.checked() ? "check" : "gear";
+	}, self);
+	self.toggleChecked = function() {
+		if(self.checked()) {
+			self.checked(false);
+		} else {
+			self.checked(true);
+		}
+	};
 }
 
 /*
